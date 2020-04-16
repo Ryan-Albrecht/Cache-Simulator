@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cache Simulator</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="cacheSimulator.css">
+        <script src="cacheSimulator.js"></script>
+    </head>
+    <body>
+		<h1>Cache Simulator</h1>
+		<div id="block_container">
+			<div id="controls">
+				<h2>Controls</h2>
+				<label for="address">2 Digit Address (00-63 in Decimal)</label>
+				<input type="number" id="address" min="0" max="63" onkeyup="inputKeyUp(event)" />
+				<button onclick="fetchMemory()">Call Address</button>
+				<div id="info">
+					<p>Last address called: <span id="lastAddress">_ _ _ _</span></p>
+					<p>Cache Hit or Miss: <span id="hitMiss">_ _ _ _</span></p>
+					<p>Tag: <span id="lastTag">_ _ _ _</span></p>
+					<p>Data: <span id="lastData">_ _ _ _</span></p>
+				</div>
+				<button onclick="window.location.reload();">Reset Simulator</button>
+			</div>
+			<div>
+				<h2>2-Way Set Associative Cache</h2>
+				<table id="cache">
+					<tr>
+					  <th></th>
+					  <th>Tag</th>
+					  <th>Data</th>
+					  <th>Tag</th>
+					  <th>Data</th>
+					</tr>
+					<tr>
+						<th>Set 00</th>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</c>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+					</tr>
+					<tr>
+						<th>Set 01</th>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+					</tr>
+					<tr>
+						<th>Set 10</th>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+					</tr>
+					<tr>
+						<th>Set 11</th>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+						<td>_ _ _ _</td>
+					</tr>
+				  </table>
+			</div>
+			<div id="memoryView">
+				  <h2>Main Memory</h2>
+				  <table id="memory">
+					  <thead>
+						  <tr>
+							<th>Address</th>
+							<th>Data</th>
+							<th>Address</th>
+							<th>Data</th>
+							<th>Address</th>
+							<th>Data</th>
+							<th>Address</th>
+							<th>Data</th>
+						  </tr>
+					  </thead>
+					  <tbody>
+						<tr>
+							<td>00</td>
+							<td>92</td>
+							<td>16</td>
+							<td>FB</td>
+							<td>32</td>
+							<td>A</td>
+							<td>48</td>
+							<td>85</td>
+						</tr>
+						<tr>
+							<td>01</td>
+							<td>70</td>
+							<td>17</td>
+							<td>44</td>
+							<td>33</td>
+							<td>F1</td>
+							<td>49</td>
+							<td>13</td>
+						</tr>
+						<tr>
+							<td>02</td>
+							<td>8C</td>
+							<td>18</td>
+							<td>DD</td>
+							<td>34</td>
+							<td>4C</td>
+							<td>50</td>
+							<td>60</td>
+						</tr>
+						<tr>
+							<td>03</td>
+							<td>FD</td>
+							<td>19</td>
+							<td>F6</td>
+							<td>35</td>
+							<td>45</td>
+							<td>51</td>
+							<td>C5</td>
+						</tr>
+						<tr>
+							<td>04</td>
+							<td>B9</td>
+							<td>20</td>
+							<td>A6</td>
+							<td>36</td>
+							<td>63</td>
+							<td>52</td>
+							<td>56</td>
+						</tr>
+						<tr>
+							<td>05</td>
+							<td>E2</td>
+							<td>21</td>
+							<td>43</td>
+							<td>37</td>
+							<td>2C</td>
+							<td>53</td>
+							<td>F2</td>
+						</tr>
+						<tr>
+							<td>06</td>
+							<td>40</td>
+							<td>22</td>
+							<td>11</td>
+							<td>38</td>
+							<td>40</td>
+							<td>54</td>
+							<td>89</td>
+						</tr>
+						<tr>
+							<td>07</td>
+							<td>C2</td>
+							<td>23</td>
+							<td>17</td>
+							<td>39</td>
+							<td>98</td>
+							<td>55</td>
+							<td>9E</td>
+						</tr>
+						<tr>
+							<td>08</td>
+							<td>D</td>
+							<td>24</td>
+							<td>98</td>
+							<td>40</td>
+							<td>91</td>
+							<td>56</td>
+							<td>6</td>
+						</tr>
+						<tr>
+							<td>09</td>
+							<td>9A</td>
+							<td>25</td>
+							<td>88</td>
+							<td>41</td>
+							<td>65</td>
+							<td>57</td>
+							<td>E2</td>
+						</tr>
+						<tr>
+							<td>10</td>
+							<td>D1</td>
+							<td>26</td>
+							<td>8</td>
+							<td>42</td>
+							<td>E</td>
+							<td>58</td>
+							<td>B</td>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td>F8</td>
+							<td>27</td>
+							<td>6A</td>
+							<td>43</td>
+							<td>76</td>
+							<td>59</td>
+							<td>A2</td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td>43</td>
+							<td>28</td>
+							<td>6D</td>
+							<td>44</td>
+							<td>EE</td>
+							<td>60</td>
+							<td>B2</td>
+						</tr>
+						<tr>
+							<td>13</td>
+							<td>7E</td>
+							<td>29</td>
+							<td>B8</td>
+							<td>45</td>
+							<td>5D</td>
+							<td>61</td>
+							<td>41</td>
+						</tr>
+						<tr>
+							<td>14</td>
+							<td>B7</td>
+							<td>30</td>
+							<td>BC</td>
+							<td>46</td>
+							<td>18</td>
+							<td>62</td>
+							<td>B1</td>
+						</tr>
+						<tr>
+							<td>15</td>
+							<td>75</td>
+							<td>31</td>
+							<td>12</td>
+							<td>47</td>
+							<td>29</td>
+							<td>63</td>
+							<td>7B</td>
+						</tr>
+					  </tbody>
+				  </table>
+			</div>
+		</div>
+        <p id="copyright">© Copyright 2020 Ryan Albrecht</p>
+    </body>
+</html> 
