@@ -12,13 +12,14 @@
 			<div id="controls">
 				<h2>Controls</h2>
 				<label for="address">2 Digit Address (00-63 in Decimal)</label>
-				<input type="number" id="address" min="0" max="63" onkeyup="inputKeyUp(event)" />
+				<input type="number" id="address" min="0" max="63" placeholder="0" onkeyup="inputKeyUp(event)" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" data-maxlength="2"/>
 				<button onclick="fetchMemory()">Call Address</button>
 				<div id="info">
-					<p>Last address called: <span id="lastAddress">_ _ _ _</span></p>
-					<p>Cache Hit or Miss: <span id="hitMiss">_ _ _ _</span></p>
-					<p>Tag: <span id="lastTag">_ _ _ _</span></p>
-					<p>Data: <span id="lastData">_ _ _ _</span></p>
+					<p>Address (decimal): <span id="lastAddressInDecimal" class="status">_ _</span></p>
+					<p>Address (binary): <span id="lastAddressInBinary" class="status">_ _ _ _ _ _</span></p>
+					<p>Tag: <span id="lastTag" class="status">_ _ _ _</span>&nbsp&nbsp&nbsp Set: <span id="lastSet" class="status">_ _</span></p>
+					<p>Cache Hit or Miss: <span id="hitMiss" class="status">_ _ _ _</span></p>
+					<p>Data: <span id="lastData" class="status">_ _</span></p>
 				</div>
 				<button onclick="window.location.reload();">Reset Simulator</button>
 			</div>
@@ -35,30 +36,30 @@
 					<tr>
 						<th>Set 00</th>
 						<td>_ _ _ _</td>
-						<td>_ _ _ _</c>
+						<td>_ _</c>
 						<td>_ _ _ _</td>
-						<td>_ _ _ _</td>
+						<td>_ _</td>
 					</tr>
 					<tr>
 						<th>Set 01</th>
 						<td>_ _ _ _</td>
+						<td>_ _</td>
 						<td>_ _ _ _</td>
-						<td>_ _ _ _</td>
-						<td>_ _ _ _</td>
+						<td>_ _</td>
 					</tr>
 					<tr>
 						<th>Set 10</th>
 						<td>_ _ _ _</td>
+						<td>_ _</td>
 						<td>_ _ _ _</td>
-						<td>_ _ _ _</td>
-						<td>_ _ _ _</td>
+						<td>_ _</td>
 					</tr>
 					<tr>
 						<th>Set 11</th>
 						<td>_ _ _ _</td>
+						<td>_ _</td>
 						<td>_ _ _ _</td>
-						<td>_ _ _ _</td>
-						<td>_ _ _ _</td>
+						<td>_ _</td>
 					</tr>
 				  </table>
 			</div>
@@ -241,7 +242,7 @@
 					  </tbody>
 				  </table>
 			</div>
+			<p id="copyright">© Copyright 2020 Ryan Albrecht</p>
 		</div>
-        <p id="copyright">© Copyright 2020 Ryan Albrecht</p>
     </body>
 </html> 

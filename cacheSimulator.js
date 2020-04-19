@@ -19,7 +19,7 @@ function fetchMemory(){
 
     // ignore invalid input
     if (address < 0 || address > 63){
-        console.log("Invalid input");
+        alert("Invalid Address:\n\nPlease enter a 2 Digit Address (00-63 in Decimal).");
         return;
     }
 
@@ -40,14 +40,16 @@ function fetchMemory(){
     let data = document.getElementById('memory').rows[mainMemoryDataRow].cells[mainMemoryDataColumn].textContent
 
     // set display status
-    document.getElementById('lastAddress').textContent = address;
+    document.getElementById('lastAddressInDecimal').textContent = address.toString().padStart(2, '0');
+    document.getElementById('lastAddressInBinary').textContent = address.toString(2).padStart(6, '0');
     document.getElementById('lastTag').textContent = tag;
+    document.getElementById('lastSet').textContent = address.toString(2).padStart(6, '0').substr(4,6);;
     document.getElementById('lastData').textContent = data;
 
     // check if either cache piece has the tag
     if (leftTag.textContent == tag || rightTag.textContent == tag){
         document.getElementById('hitMiss').textContent = "Hit!";
-        document.getElementById('hitMiss').style.color = "#28a745";
+        document.getElementById('hitMiss').className = 'hit';
 
         // highlight left data of set
         if (leftTag.textContent == tag){
@@ -58,7 +60,7 @@ function fetchMemory(){
         }
     }else{
         document.getElementById('hitMiss').textContent = "Miss!";
-        document.getElementById('hitMiss').style.color = "#cc3300";
+        document.getElementById('hitMiss').className = 'miss';
 
         // highlighting
         document.getElementById('memory').rows[mainMemoryDataRow].cells[mainMemoryDataColumn].classList.add("highlight");

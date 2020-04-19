@@ -7,10 +7,12 @@ body {
     color: wheat;
     min-height: 100%;
     overflow: hidden;
+    margin: 0;
+    height: 100vh;
 }
 
 h2 {
-    color: #e14c4c
+    color: #e14c4c;
 }
 
 textarea {
@@ -53,8 +55,6 @@ button:hover {
 /* System Fonts as used by GitHub */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    margin: 0;
-    height: 100vh;
 }
 
 h1 {
@@ -89,7 +89,7 @@ button:hover {
 #copyright {
     width: 85%;
     margin: 0 auto;
-    /* text-align: center; */
+    text-align: left;
     font-size: 14px;
     font-weight: 500;
     padding: 3rem 0 1rem 0;
@@ -110,11 +110,11 @@ button:hover {
     padding-right: 2em;
 }
 
-#cache th, td{
+#cache th:not(:last-child), td:not(:last-child){
     padding-right: 1em;
 }
 
-#memory td:nth-child(even), #memory th:nth-child(even){
+#memory td:nth-child(even):not(:last-child), #memory th:nth-child(even):not(:last-child){
     padding-right: 2em;
 }
 
@@ -127,6 +127,7 @@ input {
 
 table {
     border: 1px solid salmon;
+    width: 100%;
 }
 
 #info {
@@ -146,7 +147,17 @@ th {
     background-color: hotpink;
 }
 
-#lastAddress, #lastTag, #lastData, #hitMiss {
-    color: snow;
+.status {
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.hit {
+    color: #22e650;
+    font-weight: bold;
+}
+
+.miss {
+    color: #dd4242;
     font-weight: bold;
 }
