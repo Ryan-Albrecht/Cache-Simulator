@@ -64,7 +64,6 @@ function fetchMemory(){
 
         // highlighting
         document.getElementById('memory').rows[mainMemoryDataRow].cells[mainMemoryDataColumn].classList.add("highlight");
-       // document.getElementById('memory').rows[mainMemoryDataRow].cells[mainMemoryDataColumn-1].classList.add("highlight");
 
         // both spots open or leftmost empty or leftmost oldest
         if ((leftTag.dataset.update === undefined && rightTag.dataset.update === undefined) 
