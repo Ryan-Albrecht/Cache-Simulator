@@ -102,7 +102,7 @@ button:hover {
 }
 #block_container > div {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     padding-right: 0.5rem;
 }
 
@@ -120,6 +120,8 @@ button:hover {
 
 input {
     width: 3vw;
+    height:3vh;
+    font-size:14pt;
     font-family: monospace;
 }
 
@@ -144,7 +146,7 @@ th {
     background-color: hotpink;
 }
 
-#lastAddress, #lastTag, #lastData {
+#lastAddress, #lastTag, #lastData, #hitMiss {
     color: snow;
     font-weight: bold;
 }
